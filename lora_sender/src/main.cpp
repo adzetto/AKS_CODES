@@ -1,5 +1,5 @@
 /*********
-  STM32 Nucleo F411RE LoRa Vehicle Sender
+  ESP32 LoRa Vehicle Sender
   Efficiency Challenge Electric Vehicle Telemetry System
   Vehicle-side telemetry sender - Sends real vehicle data to pitstop
   Based on EC Technical Design Report requirements
@@ -10,15 +10,15 @@
 #include <LoRa.h>
 #include <ArduinoJson.h>
 
-// Define pins used by the LoRa transceiver module for STM32 Nucleo F411RE
-#define SS    PA4   // NSS pin (D10)
-#define RST   PA8   // RST pin (D7) 
-#define DIO0  PA9   // DIO0 pin (D8)
+// Define pins used by the LoRa transceiver module for ESP32
+#define SS    5    // NSS pin (GPIO5)
+#define RST   14   // RST pin (GPIO14)
+#define DIO0  2    // DIO0 pin (GPIO2)
 
-// SPI pins are default for STM32:
-// SCK  = PA5 (D13)
-// MISO = PA6 (D12)
-// MOSI = PA7 (D11)
+// SPI pins for ESP32 (VSPI):
+// SCK  = GPIO18
+// MISO = GPIO19
+// MOSI = GPIO23
 
 // Vehicle telemetry data variables
 int packetID = 0;
@@ -63,11 +63,11 @@ void setup() {
   Serial.begin(115200);
   while (!Serial);
   Serial.println("EC Vehicle Telemetry System - VEHICLE SIDE");
-  Serial.println("STM32 F411RE LoRa Transmitter");
+  Serial.println("ESP32 LoRa Transmitter");
   Serial.println("Sending vehicle data to pitstop...");
 
   // Initialize random seed
-  randomSeed(analogRead(A0));
+  randomSeed(esp_random());
 
   // Setup LoRa transceiver module
   LoRa.setPins(SS, RST, DIO0);

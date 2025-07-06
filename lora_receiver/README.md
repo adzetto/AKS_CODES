@@ -1,32 +1,33 @@
-# LoRa Pitstop Receiver - ESP32
+# LoRa Pitstop Receiver - STM32F103C8T6
 
 ## Efficiency Challenge Telemetry System - Pitstop Module
 
-Bu proje ESP32 ile LoRa modülü kullanarak araçtan gelen telemetri verilerini almak ve analiz etmek için tasarlanmıştır.
+Bu proje STM32F103C8T6 (Blue Pill) ile LoRa modülü kullanarak araçtan gelen telemetri verilerini almak ve analiz etmek için tasarlanmıştır.
 
 ## Hardware Bağlantıları
 
-### ESP32 - RFM95 LoRa Modülü
+### STM32F103C8T6 - RFM95 LoRa Modülü
 
-| ESP32 Pin | RFM95 Pin | Açıklama |
-|-----------|-----------|-----------|
-| GPIO18    | SCK       | SPI Clock |
-| GPIO19    | MISO      | SPI Master In Slave Out |
-| GPIO23    | MOSI      | SPI Master Out Slave In |
-| GPIO5     | NSS       | Chip Select |
-| GPIO14    | RST       | Reset |
-| GPIO2     | DIO0      | Digital I/O 0 |
-| 3.3V      | 3.3V      | Power |
-| GND       | GND       | Ground |
-| -         | ANA       | Antenna (86.3mm wire for 868MHz) |
+| STM32F103C8T6 Pin | RFM95 Pin | Açıklama |
+|-------------------|-----------|-----------|
+| PA5               | SCK       | SPI Clock |
+| PA6               | MISO      | SPI Master In Slave Out |
+| PA7               | MOSI      | SPI Master Out Slave In |
+| PA4               | NSS       | Chip Select |
+| PA3               | RST       | Reset |
+| PA2               | DIO0      | Digital I/O 0 |
+| 3.3V              | 3.3V      | Power |
+| GND               | GND       | Ground |
+| -                 | ANA       | Antenna (86.3mm wire for 868MHz) |
 
 ## Kurulum
 
 1. PlatformIO kurulu olmalı
-2. Proje klasörünü açın: `lora_receiver`
-3. Gerekli kütüphaneler otomatik yüklenecek
-4. ESP32 kartını bilgisayara bağlayın
-5. Upload edin
+2. ST-Link programlayıcı gerekli
+3. Proje klasörünü açın: `lora_receiver`
+4. Gerekli kütüphaneler otomatik yüklenecek
+5. STM32F103C8T6 kartını ST-Link ile bağlayın
+6. Upload edin
 
 ## Özellikler
 
@@ -35,7 +36,7 @@ Bu proje ESP32 ile LoRa modülü kullanarak araçtan gelen telemetri verilerini 
 - JSON formatında telemetri verisi işleme
 - RSSI ve SNR sinyal kalitesi analizi
 - Kayıp paket tespit sistemi
-- SPIFFS veri loglama
+- Serial port üzerinden veri loglama
 
 ### Kritik Uyarılar
 - Düşük batarya uyarısı (<%20)
@@ -49,7 +50,7 @@ Karşı tarafta STM32 vehicle sender çalışır durumda olmalı. Program başla
 ```
 =======================================
 EC Telemetry System - PITSTOP SIDE
-ESP32 LoRa Receiver for Vehicle Data
+STM32F103C8T6 LoRa Receiver for Vehicle Data
 =======================================
 LoRa Pitstop Receiver Ready!
 Waiting for vehicle telemetry data...
