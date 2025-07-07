@@ -73,7 +73,7 @@ void setup() {
   LoRa.setPins(SS, RST, DIO0);
   
   // 868MHz for Europe (as per EC requirements)
-  while (!LoRa.begin(868E6)) {
+  while (!LoRa.begin(433E6)) {
     Serial.println("LoRa init failed, retrying...");
     delay(500);
   }

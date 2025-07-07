@@ -86,7 +86,7 @@ void setup() {
   Serial.println("[INIT] Initializing LoRa module...");
   
   // 868MHz for Europe (as per EC requirements)
-  while (!LoRa.begin(868E6)) {
+  while (!LoRa.begin(433E6)) {
     Serial.println("[ERROR] LoRa init failed, retrying in 500ms...");
     delay(500);
   }
